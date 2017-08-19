@@ -9,7 +9,7 @@ from painfllib import StrategyNeuralNetwork
 db = nfldb.connect()
 q = nfldb.Query(db)
 
-s = StrategyLogisticRegression()
+s = StrategyNeuralNetwork()
 
 def tally_predictions(predictions):
     total = 0

@@ -4,12 +4,12 @@ from painfllib import AggregatedGame
 from painfllib import StrategyLogisticRegression
 from painfllib import StrategyNeuralNetwork
 
-s = StrategyNeuralNetwork() #StrategyLogisticRegression()
+s = StrategyLogisticRegression() #StrategyNeuralNetwork()
 
 db = nfldb.connect()
 q = nfldb.Query(db)
 
-q.game(season_year=2016, season_type='Regular', week=1)
+q.game(season_year=2016, season_type='Regular', week=17)
 
 predictions = []
 for g in q.as_games():
@@ -30,3 +30,7 @@ for prediction in predictions:
     else:
         print "Bet on ", prediction[0].away_team, " with ", round(prediction[1]*100,2) , "% probability"
     print prediction[2]
+
+for prediction in predictions:
+    p_team = prediction[0].home_team if prediction[3] == 1 else prediction[0].away_team
+    print prediction[0].away_team, " ", prediction[0].home_team, " ", p_team, " ", round(prediction[1]*100,2)

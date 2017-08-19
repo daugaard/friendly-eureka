@@ -8,9 +8,11 @@ Obtains a better prediction rating that the following:
 |--------------------|--------|
 | Flipping a coin    | 50 %|
 | Picking the home team | 56.78 %|
-| ESPN Expert | 56.78 %|
+| Expert - Sam Farmer (LA Times) | 67% |
+| Expert - Elliot Harrison (NFL Network) | 66% |
+| Vegas Line | 66% |
 
-## Methods
+## Features
 
 Feature vectors are designed with the following information from each game:
 - Team 1 Home or Away (1 for home, 0 for away)
@@ -30,9 +32,8 @@ Our first attempt at a feature vector will use the following game information:
 
 | Algorithm / Person | 5-fold CV Score |
 |--------------------|--------|
-| SVM (C=0.001,gamma=0.001)   | - %|
 | Neural Network (34 hidden nodes)| 56.44 %|
-| Logistic Regression (C=0.01) | 58.78 %|
+| L2 Logistic Regression (C=0.01) | 58.78 %|
 
 # Scheme 2
 - Team 1 last 2 games
@@ -40,9 +41,8 @@ Our first attempt at a feature vector will use the following game information:
 
 | Algorithm / Person | 5-fold CV Score |
 |--------------------|--------|
-| SVM (C=0.001,gamma=0.001)   | - %|
 | Neural Network (68 hidden nodes)| 57.42 %|
-| Logistic Regression (C=0.01) | 59.57 %|
+| L2 Logistic Regression (C=0.01) | 59.57 %|
 
 # Scheme 3
 - Team 1 last 3 games
@@ -50,9 +50,8 @@ Our first attempt at a feature vector will use the following game information:
 
 | Algorithm / Person | 5-fold CV Score |
 |--------------------|--------|
-| SVM (C=0.001,gamma=0.001)   | - %|
 | Neural Network (34 hidden nodes)| 59.51 %|
-| Logistic Regression (C=30) |60.74 %|
+| L2 Logistic Regression (C=30) |60.74 %|
 
 # Scheme 4
 - Team 1 last game
@@ -62,9 +61,8 @@ Our first attempt at a feature vector will use the following game information:
 
 | Algorithm / Person | 5-fold CV Score |
 |--------------------|--------|
-| SVM (C=0.001,gamma=0.001)   | - %|
 | Neural Network (16 hidden nodes)| 61.22 %|
-| Logistic Regression (C=1) |62.64 %|
+| L2 Logistic Regression (C=1) |62.64 %|
 
 # Scheme 5
 - Team 1 last game
@@ -74,6 +72,5 @@ Our first attempt at a feature vector will use the following game information:
 
 | Algorithm / Person | 5-fold CV Score | Season 2015 | Season 2016 |
 |--------------------|-----------------|-------------|-------------|
-| SVM (C=0.001,gamma=0.001)   | - %| - % | - %|
-| Neural Network (68 hidden nodes)| 61.91 %| 63.26% | 64.45% |
-| Logistic Regression (C=0.01) | 63.76 %| 60.16% | |
+| Neural Network (16 hidden nodes)| 62.35 %| 61.33% | 65.23% |
+| L2 Logistic Regression (C=0.01) | 63.47 %| 61.72% | 65.63% |
