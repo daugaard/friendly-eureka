@@ -74,3 +74,15 @@ Our first attempt at a feature vector will use the following game information:
 |--------------------|-----------------|-------------|-------------|
 | Neural Network (16 hidden nodes)| 62.35 %| 61.33% | 65.23% |
 | L2 Logistic Regression (C=0.01) | 63.47 %| 61.72% | 65.63% |
+
+# Scheme 6
+Adding defensive stats to feature vectors (defence tackles, defence forced fumbles, defence sacks).
+- Team 1 last game
+- Team 1 rolling average of last 4 games (does not include the home/away parameter)
+- Team 2 last game
+- Team 2 rolling average of last 4 games (does not include the home/away parameter)
+
+| Algorithm / Person | 5-fold CV Score | Season 2015 | Season 2016 |
+|--------------------|-----------------|-------------|-------------|
+| Neural Network (16 hidden nodes)| 63.23 %| - | - |
+| L2 Logistic Regression (C=0.01) | 62.84 %| - | - |

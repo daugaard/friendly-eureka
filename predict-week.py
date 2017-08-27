@@ -1,15 +1,29 @@
+import sys
 import nfldb
 import numpy as np
 from painfllib import AggregatedGame
 from painfllib import StrategyLogisticRegression
 from painfllib import StrategyNeuralNetwork
 
-s = StrategyLogisticRegression() #StrategyNeuralNetwork()
+
+
+week = 3 if len(sys.argv) < 2 else sys.argv[1]
+
+print "Week", week
+
+s = None
+if len(sys.argv) >= 3 and sys.argv[2] == "nn":
+    print "Using Neural Network"
+    s = StrategyNeuralNetwork()
+else:
+    print "Using Logistic Regression"
+    s = StrategyLogisticRegression()
+
 
 db = nfldb.connect()
 q = nfldb.Query(db)
 
-q.game(season_year=2016, season_type='Regular', week=17)
+q.game(season_year=2017, season_type='Preseason', week=week)
 
 predictions = []
 for g in q.as_games():

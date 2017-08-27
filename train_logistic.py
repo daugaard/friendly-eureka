@@ -11,7 +11,7 @@ from sklearn.metrics import accuracy_score
 from sklearn.externals import joblib
 
 X = []
-with open('data/scheme5_X.csv', 'rb') as csvfile:
+with open('data/scheme6_X.csv', 'rb') as csvfile:
     reader = csv.reader(csvfile, delimiter=',', quotechar='"')
     for row in reader:
         X.append(map(float,row))
@@ -20,7 +20,7 @@ with open('data/scheme5_X.csv', 'rb') as csvfile:
 X = np.array(X)
 
 y = []
-with open('data/scheme5_y.csv', 'rb') as csvfile:
+with open('data/scheme6_y.csv', 'rb') as csvfile:
     reader = csv.reader(csvfile, delimiter=',', quotechar='"')
     for row in reader:
         y = map(float,row)
@@ -56,4 +56,4 @@ y_predictions = clf.predict(X_test)
 print accuracy_score(y_test, y_predictions, False)
 print clf.score(X_test, y_test)
 
-joblib.dump(clf, "models/logistic_regression_scheme5.pkl")
+joblib.dump(clf, "models/logistic_regression_scheme6.pkl")

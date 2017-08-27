@@ -171,3 +171,54 @@ class FeatureVectorFactory:
 
         # Flatten array and return
         return [item for subvector in feature_vector for item in subvector]
+
+    # Feature vector for scheme 5 will give you a feature vector compromised of:
+    # - Feature Vector from Home Team last game
+    # - Average performance from last 4 games before that or less if they didn't play 4 games yet this season (incl. preseason)
+    # - Feature Vector from Away Team last game
+    # - Average performance from last 4 games before that or less if they didn't play 4 games yet this season (incl. preseason)
+    def get_feature_vector_scheme6_for(self, game):
+
+        feature_vector = []
+        last_home_team_game = self.get_last_game(game, game.home_team)
+        feature_vector.append(AggregatedGame(last_home_team_game).get_feature_vector_ext_for(game.home_team))
+
+        summarized_features = [0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        games = 0
+        for i in range(4):
+            try:
+                last_home_team_game = self.get_last_game(last_home_team_game, game.home_team)
+                fv = map(float,AggregatedGame(last_home_team_game).get_feature_vector_ext_for_no_home_away(game.home_team))
+                for n in range(8):
+                    summarized_features[n] += fv[n]
+                games += 1
+            except:
+                print "No more games in this season"
+
+        for n in range(8):
+            summarized_features[n] = round(summarized_features[n]/games,2)
+
+        feature_vector.append(summarized_features)
+
+        last_away_team_game = self.get_last_game(game, game.away_team)
+        feature_vector.append(AggregatedGame(last_away_team_game).get_feature_vector_ext_for(game.away_team))
+
+        summarized_features = [0,0,0,0,0,0,0,0]
+        games = 0
+        for i in range(4):
+            try:
+                last_away_team_game = self.get_last_game(last_away_team_game, game.away_team)
+                fv = map(float,AggregatedGame(last_away_team_game).get_feature_vector_ext_for_no_home_away(game.away_team))
+                for n in range(8):
+                    summarized_features[n] += fv[n]
+                games += 1
+            except:
+                print "No more games in this season"
+
+        for n in range(8):
+            summarized_features[n] = round(summarized_features[n]/games,2)
+
+        feature_vector.append(summarized_features)
+
+        # Flatten array and return
+        return [item for subvector in feature_vector for item in subvector]
