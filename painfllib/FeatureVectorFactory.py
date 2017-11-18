@@ -11,7 +11,7 @@ class FeatureVectorFactory:
         year = game.season_year
         season_type = game.season_type
 
-        while len(last_game_home_team) == 0:
+        while len(last_game_home_team) == 0 or AggregatedGame(last_game_home_team[0]).home_team_receiving() is None:
             if week == 1 and str(season_type) == "Regular":
                 week = 4
                 season_type = "Preseason"

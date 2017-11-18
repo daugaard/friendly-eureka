@@ -1,4 +1,4 @@
-# Predicting NFL games using Artificial Intelligence
+ # Predicting NFL games using Artificial Intelligence
 Building and testing machine learning models to predict the outcomes of NFL games.
 
 ## Goal

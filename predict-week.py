@@ -7,7 +7,7 @@ from painfllib import StrategyNeuralNetwork
 
 
 
-week = 3 if len(sys.argv) < 2 else sys.argv[1]
+week = 1 if len(sys.argv) < 2 else sys.argv[1]
 
 print "Week", week
 
@@ -23,7 +23,7 @@ else:
 db = nfldb.connect()
 q = nfldb.Query(db)
 
-q.game(season_year=2017, season_type='Preseason', week=week)
+q.game(season_year=2017, season_type='Regular', week=week)
 
 predictions = []
 for g in q.as_games():
@@ -47,4 +47,4 @@ for prediction in predictions:
 
 for prediction in predictions:
     p_team = prediction[0].home_team if prediction[3] == 1 else prediction[0].away_team
-    print prediction[0].away_team, " ", prediction[0].home_team, " ", p_team, " ", round(prediction[1]*100,2)
+    print prediction[0].away_team, prediction[0].home_team, p_team, round(prediction[1]*100,2)
